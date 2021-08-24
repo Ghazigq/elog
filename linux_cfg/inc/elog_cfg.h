@@ -56,7 +56,7 @@
 /* enable log color */
 #define ELOG_COLOR_ENABLE
 /* enable asynchronous output mode */
-#define ELOG_ASYNC_OUTPUT_ENABLE
+// #define ELOG_ASYNC_OUTPUT_ENABLE
 /* the highest output level for async mode, other level will sync output */
 #define ELOG_ASYNC_OUTPUT_LVL                ELOG_LVL_DEBUG
 /* buffer size for asynchronous output mode */
