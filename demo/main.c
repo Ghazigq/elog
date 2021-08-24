@@ -51,12 +51,19 @@ void test_elog(void) {
     while(true) {
         /* test log output for all level */
         log_raw("Hello EasyLogger!\n");
+        usleep(1000);
         log_a("Hello EasyLogger!");
+        usleep(1000);
         log_e("Hello EasyLogger!");
+        usleep(1000);
         log_w("Hello EasyLogger!");
+        usleep(1000);
         log_i("Hello EasyLogger!");
+        usleep(1000);
         log_d("Hello EasyLogger!");
+        usleep(1000);
         log_v("Hello EasyLogger!");
+        usleep(1000);
         log_hexdump("test", 16, buf, sizeof(buf));
         sleep(5);
     }
