@@ -33,7 +33,7 @@ extern void elog_output(uint8_t level, const char *tag, const char *file, const 
 extern void elog_hexdump(const char *name, uint8_t width, uint8_t *buf, uint16_t size);
 extern void elog_raw(const char *format, ...);
 
-#define log_output(LEVEL, TAG, ...) do {log_get_env_and_update();elog_output(LEVEL, TAG, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__);} while(0)
+#define log_output(LEVEL, TAG, ...) do {elog_output(LEVEL, TAG, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__);} while(0)
 
 #if LOG_LVL >= LOG_LVL_ASSERT
     #define log_a(...)       log_output(LOG_LVL_ASSERT, LOG_TAG, __VA_ARGS__)
@@ -70,8 +70,6 @@ extern void elog_raw(const char *format, ...);
 #define log_raw     elog_raw
 
 int log_init(void);
-
-void log_get_env_and_update(void);
 
 void log_set_output_enabled(bool enabled);
 

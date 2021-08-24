@@ -63,22 +63,3 @@ void log_set_filter_tag_lvl(const char *tag, uint8_t level)
     elog_set_filter_tag_lvl(tag, level);
 }
 
-void log_get_env_and_update(void)
-{
-    char *value = NULL;
-    uint8_t level = 0;
-
-    if ((value = getenv(ENV_LOG_LEVEL))) {
-        level = atoi(value);
-        if (level >= ELOG_LVL_VERBOSE)
-            log_set_filter_lvl(ELOG_LVL_VERBOSE);
-    }
-
-    if ((value = getenv(ENV_LOG_TAG))) {
-        log_set_filter_tag(value);
-    }
-
-    if ((value = getenv(ENV_LOG_KEYWORD))) {
-        log_set_filter_kw(value);
-    }
-}
