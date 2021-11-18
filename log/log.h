@@ -69,7 +69,9 @@ extern void elog_raw(const char *format, ...);
 #define log_hexdump elog_hexdump
 #define log_raw     elog_raw
 
-int log_init(void);
+void log_init(void);
+
+void log_deinit(void);
 
 void log_set_output_enabled(bool enabled);
 

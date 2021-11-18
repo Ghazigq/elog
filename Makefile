@@ -5,7 +5,7 @@ CROSS_COMPILE =
 EASYLOGGER_PATH := EasyLogger
 
 # 编译器在编译时的参数设置
-CFLAGS := -Wall -Wno-unused-function -Werror -O2
+CFLAGS := -Wall -Wno-unused-function -Werror -O2 -fPIC
 # 添加头文件路径
 CFLAGS += -I$(PWD)/linux_cfg/inc
 CFLAGS += -I$(PWD)/$(EASYLOGGER_PATH)/easylogger/inc
@@ -55,6 +55,7 @@ all : lib target
 lib : $(lib-y)
 ifneq ($(lib-y),)
 	@$(CROSS_COMPILE)ar crs $(BUILD_PATH)/lib$(LIB).a $(lib-y)
+	@$(CROSS_COMPILE)gcc -shared -o $(BUILD_PATH)/lib$(LIB).so -Wl,--whole-archive $(BUILD_PATH)/lib$(LIB).a -Wl,--no-whole-archive
 	@echo $(LIB) generate succeed!
 endif
 

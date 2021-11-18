@@ -12,11 +12,10 @@
 #include <unistd.h>
 #include "elog.h"
 
-#define ENV_LOG_LEVEL "LOG_LEVEL"
-#define ENV_LOG_TAG "LOG_TAG"
-#define ENV_LOG_KEYWORD "LOG_KEYWORD"
+// void log_init(void) __attribute__((constructor)); //告诉gcc把这个函数扔到init section
+// void log_deinit(void) __attribute__((destructor));  //告诉gcc把这个函数扔到fini section
 
-int log_init(void)
+void log_init(void)
 {
     /* close printf buffer */
     setbuf(stdout, NULL);
@@ -34,8 +33,11 @@ int log_init(void)
 #endif
     /* start EasyLogger */
     elog_start();
+}
 
-    return 0;
+void log_deinit(void)
+{
+    elog_deinit();
 }
 
 void log_set_output_enabled(bool enabled)
