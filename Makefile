@@ -48,8 +48,9 @@ obj-y := $(patsubst %.c, $(BUILD_PATH)/%.c.o, $(obj-y))
 dep_files := $(patsubst %.o,%.d, $(lib-y) $(obj-y))
 
 #规则
-.PHONY: clean all lib target
+.PHONY: clean all lib target install
 
+install : all _install
 all : lib target
 
 lib : $(lib-y)
@@ -70,6 +71,12 @@ $(BUILD_PATH)/%.cpp.o : %.cpp
 target : $(obj-y)
 ifneq ($(obj-y),)
 	$(CROSS_COMPILE)gcc -o $(TARGET) $(obj-y) $(LDFLAGS)
+endif
+
+_install : 
+ifneq ($(obj-y),)
+	cp $(BUILD_PATH)/lib$(LIB).a /usr/local/lib/
+	cp ./log/log.h /usr/local/include/
 endif
 
 clean:
