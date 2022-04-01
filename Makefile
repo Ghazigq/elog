@@ -5,7 +5,7 @@ CROSS_COMPILE =
 EASYLOGGER_PATH := EasyLogger
 
 # 编译器在编译时的参数设置
-CFLAGS := -Wall -Wno-unused-function -Werror -O2 -fPIC
+CFLAGS := -Wall -Wno-unused-function -Werror -O2 -fPIC -Wno-format-truncation
 # 添加头文件路径
 CFLAGS += -I$(PWD)/linux_cfg/inc
 CFLAGS += -I$(PWD)/$(EASYLOGGER_PATH)/easylogger/inc
